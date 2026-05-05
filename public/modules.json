@@ -223,5 +223,59 @@
     "repo": "https://github.com/fewieden/MMM-Fuel",
     "stars": 3,
     "requiresApiKey": true
+  },
+  {
+    "id": "MMM-AlexaControl",
+    "name": "Alexa Control",
+    "category": "Sistema",
+    "description": "Controla el teu MagicMirror amb comandes de veu mitjançant Amazon Alexa.",
+    "repo": "https://github.com/Brigade1/MMM-AlexaControl",
+    "stars": 3,
+    "requiresApiKey": true
+  },
+  {
+    "id": "MMM-GmailFeed",
+    "name": "Gmail Feed",
+    "category": "Comunicació",
+    "description": "Mostra els correus no llegits de la teva safata de Gmail al mirall.",
+    "repo": "https://github.com/tjnorwat/MMM-GmailFeed",
+    "stars": 3,
+    "requiresApiKey": true
+  },
+  {
+    "id": "MMM-OneTracker",
+    "name": "OneTracker",
+    "category": "Utilitat",
+    "description": "Seguiment de paquets i enviaments des de múltiples operadors logístics.",
+    "repo": "https://github.com/MatthiasHarzer/MMM-OneTracker",
+    "stars": 3,
+    "requiresApiKey": true
+  },
+  {
+    "id": "MMM-OpenHAB-Items",
+    "name": "OpenHAB Items",
+    "category": "Llar",
+    "description": "Integració amb OpenHAB per mostrar i controlar dispositius de la llar intel·ligent.",
+    "repo": "https://github.com/gehransaeed/MMM-OpenHAB-Items",
+    "stars": 3,
+    "requiresApiKey": false
+  },
+  {
+    "id": "MMM-WiFiPassword",
+    "name": "WiFi Password",
+    "category": "Utilitat",
+    "description": "Mostra el nom i la contrasenya del WiFi amb un codi QR per connectar-se fàcilment.",
+    "repo": "https://github.com/TeraTech/MMM-WiFiPassword",
+    "stars": 4,
+    "requiresApiKey": false
+  },
+  {
+    "id": "MMM-soccer",
+    "name": "Soccer",
+    "category": "Esports",
+    "description": "Mostra classificacions i resultats de lligues de futbol.",
+    "repo": "https://github.com/fewieden/MMM-soccer",
+    "stars": 4,
+    "requiresApiKey": true
   }
 ]
