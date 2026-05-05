@@ -152,3 +152,14 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.module-btn.uninstall {
+  border: 1px solid #888;
+  background-color: transparent;
+  color: #888;
+}
+
+.module-btn.uninstall:hover {
+  background-color: #888;
+  color: #0f0f0f;
+}
