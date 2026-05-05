@@ -9,6 +9,7 @@ function Navbar() {
   const links = [
     { path: '/', label: 'Inici' },
     { path: '/modules', label: 'Mòduls' },
+    { path: '/store', label: 'Store' },
     { path: '/settings', label: 'Configuració' },
   ];
 
