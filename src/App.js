@@ -26,7 +26,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/modules" element={<Modules />} />
-            <Route path="/store" element={<Store installedModules={installedModules} />} />
+            <Route path="/store" element={<Store installedModules={installedModules} onInstall={() => {
+            fetch(`${AGENT_URL}/modules`)
+            .then(res => res.json())
+            .then(data => setInstalledModules(data.modules || []));
+            }} />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>
