@@ -1,20 +1,64 @@
-.modules h2 {
+.modules-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modules-header h2 {
   font-size: 28px;
   color: #7eb8f7;
-  margin-bottom: 24px;
+}
+
+.restart-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #7eb8f7;
+  background-color: transparent;
+  color: #7eb8f7;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.restart-btn:hover {
+  background-color: #7eb8f7;
+  color: #0f0f0f;
+}
+
+.restart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modules-message {
+  padding: 14px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.modules-message.success {
+  background-color: #1a2e1a;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+}
+
+.modules-message.error {
+  background-color: #2e1a1a;
+  border: 1px solid #f44336;
+  color: #f44336;
 }
 
 .info {
   color: #888;
 }
 
-.error {
-  color: #f44336;
-}
-
 .modules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
 }
 
@@ -25,22 +69,86 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
   transition: border-color 0.2s;
 }
 
-.module-card:hover {
-  border-color: #7eb8f7;
+.module-card.active {
+  border-color: #4caf50;
+}
+
+.module-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .module-icon {
-  font-size: 32px;
+  font-size: 24px;
+}
+
+.module-status {
+  font-size: 12px;
+}
+
+.module-status.on {
+  color: #4caf50;
+}
+
+.module-status.off {
+  color: #888;
 }
 
 .module-name {
-  font-size: 14px;
+  font-size: 13px;
   color: #ccc;
-  text-align: center;
   word-break: break-word;
+  font-weight: 500;
+}
+
+.position-select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background-color: #0f0f0f;
+  color: #ccc;
+  font-size: 12px;
+  width: 100%;
+}
+
+.module-btn {
+  width: 100%;
+  padding: 9px;
+  border-radius: 9px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+
+.module-btn.activate {
+  border: 1px solid #4caf50;
+  background-color: transparent;
+  color: #4caf50;
+}
+
+.module-btn.activate:hover {
+  background-color: #4caf50;
+  color: #0f0f0f;
+}
+
+.module-btn.deactivate {
+  border: 1px solid #f44336;
+  background-color: transparent;
+  color: #f44336;
+}
+
+.module-btn.deactivate:hover {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.module-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
