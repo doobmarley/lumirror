@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ModuleConfigModal from '../components/ModuleConfigModal';
 import './Modules.css';
 
 const AGENT_URL = 'http://192.168.1.97:8585';
@@ -17,6 +18,7 @@ function Modules({ activeModules, onRefresh }) {
   const [working, setWorking] = useState(null);
   const [selectedPositions, setSelectedPositions] = useState({});
   const [restarting, setRestarting] = useState(false);
+  const [configuringModule, setConfiguringModule] = useState(null);
 
   useEffect(() => {
     fetch(`${AGENT_URL}/modules`)
@@ -28,7 +30,12 @@ function Modules({ activeModules, onRefresh }) {
 
   const isActive = (mod) => activeModules.includes(mod);
 
-  const handleActivate = (mod) => {
+  const handleActivateClick = (mod) => {
+    setConfiguringModule(mod);
+  };
+
+  const handleActivateConfirm = (mod, configValues) => {
+    setConfiguringModule(null);
     setWorking(mod);
     setMessage(null);
     const position = selectedPositions[mod] || 'bottom_bar';
@@ -36,7 +43,7 @@ function Modules({ activeModules, onRefresh }) {
     fetch(`${AGENT_URL}/config/modules/add`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ moduleName: mod, position })
+      body: JSON.stringify({ moduleName: mod, position, config: configValues })
     })
       .then(res => res.json())
       .then(data => {
@@ -121,6 +128,14 @@ function Modules({ activeModules, onRefresh }) {
 
   return (
     <div className="modules">
+      {configuringModule && (
+        <ModuleConfigModal
+          moduleName={configuringModule}
+          onConfirm={(values) => handleActivateConfirm(configuringModule, values)}
+          onCancel={() => setConfiguringModule(null)}
+        />
+      )}
+
       <div className="modules-header">
         <h2>Mòduls instal·lats</h2>
         <button
@@ -165,7 +180,7 @@ function Modules({ activeModules, onRefresh }) {
 
             <button
               className={`module-btn ${isActive(mod) ? 'deactivate' : 'activate'}`}
-              onClick={() => isActive(mod) ? handleDeactivate(mod) : handleActivate(mod)}
+              onClick={() => isActive(mod) ? handleDeactivate(mod) : handleActivateClick(mod)}
               disabled={working === mod}
             >
               {working === mod ? '⏳ Treballant...' :
