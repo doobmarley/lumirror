@@ -1,0 +1,176 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+  color: #7eb8f7;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #e0e0e0;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.config-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.config-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.required {
+  color: #f44336;
+  margin-left: 4px;
+}
+
+.config-input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background-color: #0f0f0f;
+  color: #e0e0e0;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.config-input:focus {
+  border-color: #7eb8f7;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.toggle-thumb {
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.toggle.on .toggle-thumb {
+  background-color: #7eb8f7;
+}
+
+.toggle.off .toggle-thumb {
+  background-color: #444;
+}
+
+.toggle-thumb::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  top: 3px;
+  transition: left 0.2s;
+}
+
+.toggle.on .toggle-thumb::after {
+  left: 21px;
+}
+
+.toggle.off .toggle-thumb::after {
+  left: 3px;
+}
+
+.toggle span {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-btn.cancel {
+  border: 1px solid #444;
+  background-color: transparent;
+  color: #888;
+}
+
+.modal-btn.cancel:hover {
+  border-color: #888;
+  color: #e0e0e0;
+}
+
+.modal-btn.confirm {
+  border: 1px solid #4caf50;
+  background-color: transparent;
+  color: #4caf50;
+}
+
+.modal-btn.confirm:hover {
+  background-color: #4caf50;
+  color: #0f0f0f;
+}
