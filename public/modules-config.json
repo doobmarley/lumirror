@@ -1,0 +1,297 @@
+{
+  "MMM-WiFiPassword": {
+    "fields": [
+      {
+        "key": "network",
+        "label": "Nom de la xarxa WiFi (SSID)",
+        "type": "text",
+        "required": true,
+        "placeholder": "El meu WiFi"
+      },
+      {
+        "key": "password",
+        "label": "Contrasenya",
+        "type": "password",
+        "required": true,
+        "placeholder": "La meva contrasenya"
+      },
+      {
+        "key": "authType",
+        "label": "Tipus d'autenticació",
+        "type": "select",
+        "required": false,
+        "default": "WPA",
+        "options": ["WPA", "WEP", "NONE"]
+      },
+      {
+        "key": "header",
+        "label": "Títol",
+        "type": "text",
+        "required": false,
+        "default": "Local WiFi Details",
+        "placeholder": "WiFi de casa"
+      },
+      {
+        "key": "qrSize",
+        "label": "Mida del codi QR (píxels)",
+        "type": "number",
+        "required": false,
+        "default": 125
+      },
+      {
+        "key": "showNetwork",
+        "label": "Mostrar nom de la xarxa",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      },
+      {
+        "key": "showPassword",
+        "label": "Mostrar contrasenya",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      },
+      {
+        "key": "layoutVertical",
+        "label": "Disposició vertical",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      }
+    ]
+  },
+  "MMM-MoonPhase": {
+    "fields": [
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 3600000
+      },
+      {
+        "key": "hemisphere",
+        "label": "Hemisferi",
+        "type": "select",
+        "required": false,
+        "default": "N",
+        "options": ["N", "S"]
+      },
+      {
+        "key": "geoCoords",
+        "label": "Coordenades geogràfiques",
+        "type": "text",
+        "required": false,
+        "placeholder": "41.3851,2.1734"
+      }
+    ]
+  },
+  "MMM-AirQuality": {
+    "fields": [
+      {
+        "key": "location",
+        "label": "Ubicació",
+        "type": "text",
+        "required": true,
+        "placeholder": "Barcelona"
+      },
+      {
+        "key": "lang",
+        "label": "Idioma",
+        "type": "select",
+        "required": false,
+        "default": "ca",
+        "options": ["ca", "en", "es"]
+      },
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 3600000
+      }
+    ]
+  },
+  "MMM-NowPlayingOnSpotify": {
+    "fields": [
+      {
+        "key": "clientID",
+        "label": "Spotify Client ID",
+        "type": "text",
+        "required": true,
+        "placeholder": "El teu Client ID de Spotify"
+      },
+      {
+        "key": "clientSecret",
+        "label": "Spotify Client Secret",
+        "type": "password",
+        "required": true,
+        "placeholder": "El teu Client Secret de Spotify"
+      },
+      {
+        "key": "accessToken",
+        "label": "Access Token",
+        "type": "text",
+        "required": true,
+        "placeholder": "El teu Access Token"
+      },
+      {
+        "key": "refreshToken",
+        "label": "Refresh Token",
+        "type": "text",
+        "required": true,
+        "placeholder": "El teu Refresh Token"
+      }
+    ]
+  },
+  "MMM-Strava": {
+    "fields": [
+      {
+        "key": "access_token",
+        "label": "Strava Access Token",
+        "type": "text",
+        "required": true,
+        "placeholder": "El teu Access Token de Strava"
+      },
+      {
+        "key": "athlete_token",
+        "label": "Strava Athlete Token",
+        "type": "text",
+        "required": true,
+        "placeholder": "El teu Athlete Token"
+      },
+      {
+        "key": "activities",
+        "label": "Activitats a mostrar",
+        "type": "select",
+        "required": false,
+        "default": "ride",
+        "options": ["ride", "run", "swim", "walk"]
+      },
+      {
+        "key": "period",
+        "label": "Període",
+        "type": "select",
+        "required": false,
+        "default": "recent",
+        "options": ["recent", "ytd", "all"]
+      }
+    ]
+  },
+  "MMM-soccer": {
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "API Key de football-data.org",
+        "type": "password",
+        "required": true,
+        "placeholder": "La teva API Key"
+      },
+      {
+        "key": "colored",
+        "label": "Mostrar colors dels equips",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      {
+        "key": "show",
+        "label": "Mostrar",
+        "type": "select",
+        "required": false,
+        "default": "TABLE",
+        "options": ["TABLE", "NEXT", "PREV"]
+      },
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 3600000
+      }
+    ]
+  },
+  "MMM-GmailFeed": {
+    "fields": [
+      {
+        "key": "username",
+        "label": "Correu Gmail",
+        "type": "text",
+        "required": true,
+        "placeholder": "exemple@gmail.com"
+      },
+      {
+        "key": "password",
+        "label": "Contrasenya d'aplicació Gmail",
+        "type": "password",
+        "required": true,
+        "placeholder": "Contrasenya d'aplicació de Google"
+      },
+      {
+        "key": "maxEmails",
+        "label": "Màxim de correus a mostrar",
+        "type": "number",
+        "required": false,
+        "default": 5
+      },
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 600000
+      }
+    ]
+  },
+  "MMM-AlexaControl": {
+    "fields": [
+      {
+        "key": "deviceName",
+        "label": "Nom del dispositiu Alexa",
+        "type": "text",
+        "required": true,
+        "placeholder": "mirall"
+      },
+      {
+        "key": "pm2ProcessName",
+        "label": "Nom del procés PM2",
+        "type": "text",
+        "required": false,
+        "default": "mm"
+      },
+      {
+        "key": "image",
+        "label": "Mostrar imatge",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      }
+    ]
+  },
+  "MMM-OpenHAB-Items": {
+    "fields": [
+      {
+        "key": "host",
+        "label": "Adreça del servidor OpenHAB",
+        "type": "text",
+        "required": true,
+        "placeholder": "192.168.1.x"
+      },
+      {
+        "key": "port",
+        "label": "Port del servidor OpenHAB",
+        "type": "number",
+        "required": false,
+        "default": 8080
+      },
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 60000
+      }
+    ]
+  }
+}
