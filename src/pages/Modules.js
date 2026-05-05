@@ -73,6 +73,35 @@ function Modules({ activeModules, onRefresh }) {
       .finally(() => setWorking(null));
   };
 
+  const handleUninstall = (mod) => {
+    if (!window.confirm(`Segur que vols desinstal·lar ${mod}?`)) return;
+    setWorking(mod);
+    setMessage(null);
+
+    fetch(`${AGENT_URL}/config/modules/remove`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ moduleName: mod })
+    })
+      .then(() => fetch(`${AGENT_URL}/uninstall`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ moduleName: mod })
+      }))
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          setMessage({ type: 'success', text: `✅ ${mod} desinstal·lat correctament!` });
+          setModules(prev => prev.filter(m => m !== mod));
+          if (onRefresh) onRefresh();
+        } else {
+          setMessage({ type: 'error', text: `❌ ${data.error}` });
+        }
+      })
+      .catch(() => setMessage({ type: 'error', text: '❌ No s\'ha pogut connectar amb el mirall' }))
+      .finally(() => setWorking(null));
+  };
+
   const handleRestart = () => {
     setRestarting(true);
     setMessage(null);
@@ -142,6 +171,16 @@ function Modules({ activeModules, onRefresh }) {
               {working === mod ? '⏳ Treballant...' :
                 isActive(mod) ? '⏹ Desactivar' : '▶ Activar'}
             </button>
+
+            {!isActive(mod) && (
+              <button
+                className="module-btn uninstall"
+                onClick={() => handleUninstall(mod)}
+                disabled={working === mod}
+              >
+                {working === mod ? '⏳ Treballant...' : '🗑 Desinstal·lar'}
+              </button>
+            )}
           </div>
         ))}
       </div>
