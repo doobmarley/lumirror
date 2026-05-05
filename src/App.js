@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Modules from './pages/Modules';
@@ -11,12 +11,27 @@ const AGENT_URL = 'http://192.168.1.97:8585';
 
 function App() {
   const [installedModules, setInstalledModules] = useState([]);
+  const [activeModules, setActiveModules] = useState([]);
 
-  useEffect(() => {
+  const refreshModules = useCallback(() => {
     fetch(`${AGENT_URL}/modules`)
       .then(res => res.json())
       .then(data => setInstalledModules(data.modules || []));
   }, []);
+
+  const refreshActive = useCallback(() => {
+    fetch(`${AGENT_URL}/config/modules`)
+      .then(res => res.json())
+      .then(data => {
+        const matches = [...(data.raw || '').matchAll(/module:\s*["']([^"']+)["']/g)];
+        setActiveModules(matches.map(m => m[1]));
+      });
+  }, []);
+
+  useEffect(() => {
+    refreshModules();
+    refreshActive();
+  }, [refreshModules, refreshActive]);
 
   return (
     <Router>
@@ -25,12 +40,18 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/modules" element={<Modules />} />
-            <Route path="/store" element={<Store installedModules={installedModules} onInstall={() => {
-            fetch(`${AGENT_URL}/modules`)
-            .then(res => res.json())
-            .then(data => setInstalledModules(data.modules || []));
-            }} />} />
+            <Route path="/modules" element={
+              <Modules
+                activeModules={activeModules}
+                onRefresh={refreshActive}
+              />}
+            />
+            <Route path="/store" element={
+              <Store
+                installedModules={installedModules}
+                onInstall={refreshModules}
+              />}
+            />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>
