@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './Store.css';
 
-function Store({ installedModules }) {
+const AGENT_URL = 'http://192.168.1.97:8585';
+
+function Store({ installedModules, onInstall }) {
   const [modules, setModules] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Tots');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [installing, setInstalling] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     fetch('/modules.json')
@@ -19,6 +23,30 @@ function Store({ installedModules }) {
       .finally(() => setLoading(false));
   }, []);
 
+  const isInstalled = (id) => installedModules.includes(id);
+
+  const handleInstall = (mod) => {
+    setInstalling(mod.id);
+    setMessage(null);
+
+    fetch(`${AGENT_URL}/install`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ repo: mod.repo })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          setMessage({ type: 'success', text: `✅ ${mod.name} instal·lat correctament!` });
+          if (onInstall) onInstall();
+        } else {
+          setMessage({ type: 'error', text: `❌ ${data.error}` });
+        }
+      })
+      .catch(() => setMessage({ type: 'error', text: '❌ No s\'ha pogut connectar amb el mirall' }))
+      .finally(() => setInstalling(null));
+  };
+
   const filtered = modules.filter(m => {
     const matchCat = selectedCategory === 'Tots' || m.category === selectedCategory;
     const matchSearch = m.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -26,11 +54,15 @@ function Store({ installedModules }) {
     return matchCat && matchSearch;
   });
 
-  const isInstalled = (id) => installedModules.includes(id);
-
   return (
     <div className="store">
       <h2>Store de Mòduls</h2>
+
+      {message && (
+        <div className={`store-message ${message.type}`}>
+          {message.text}
+        </div>
+      )}
 
       <div className="store-filters">
         <input
@@ -71,6 +103,15 @@ function Store({ installedModules }) {
                 GitHub →
               </a>
             </div>
+            {!isInstalled(mod.id) && (
+              <button
+                className="install-btn"
+                onClick={() => handleInstall(mod)}
+                disabled={installing === mod.id}
+              >
+                {installing === mod.id ? '⏳ Instal·lant...' : '⬇️ Instal·lar'}
+              </button>
+            )}
           </div>
         ))}
       </div>
