@@ -1,73 +1,19 @@
 [
-  {
-    "id": "MMM-Spotify",
-    "name": "Spotify",
-    "category": "Música",
-    "description": "Mostra la cançó que estàs escoltant a Spotify amb portada i barra de progrés.",
-    "repo": "https://github.com/skuehlshelby/MMM-Spotify",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
+   {
     "id": "MMM-NowPlayingOnSpotify",
     "name": "Now Playing On Spotify",
     "category": "Música",
     "description": "Mostra en temps real la cançó que estàs reproduint a Spotify.",
-    "repo": "https://github.com/enricqueleo/mmm-nowplayingonspotify",
+    "repo": "https://github.com/doobmarley/mmm-nowplayingonspotify",
     "stars": 5,
     "requiresApiKey": true
-  },
-  {
-    "id": "MMM-GoogleCalendar",
-    "name": "Google Calendar",
-    "category": "Calendari",
-    "description": "Sincronitza i mostra els teus calendaris de Google al mirall.",
-    "repo": "https://github.com/randomBrainstormer/MMM-GoogleCalendar",
-    "stars": 5,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-CalendarTodayTomorrow",
-    "name": "Calendar Today & Tomorrow",
-    "category": "Calendari",
-    "description": "Mostra únicament els esdeveniments d'avui i demà del teu calendari.",
-    "repo": "https://github.com/qunu/MMM-CalendarTodayTomorrow",
-    "stars": 3,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-WeeklySchedule",
-    "name": "Weekly Schedule",
-    "category": "Calendari",
-    "description": "Mostra horaris setmanals recurrents com ara classes o reunions.",
-    "repo": "https://github.com/pinsdorf/MMM-WeeklySchedule",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-OpenWeatherForecast",
-    "name": "OpenWeather Forecast",
-    "category": "Temps",
-    "description": "Mostra el temps actual i la previsió per hores i dies amb icones animades.",
-    "repo": "https://github.com/Tom-Hirschberger/MMM-OpenWeatherForecast",
-    "stars": 5,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-RAIN-MAP",
-    "name": "Rain Map",
-    "category": "Temps",
-    "description": "Mapa de radar de pluja en temps real basat en OpenStreetMap.",
-    "repo": "https://github.com/jalibu/MMM-RAIN-MAP",
-    "stars": 5,
-    "requiresApiKey": false
   },
   {
     "id": "MMM-AirQuality",
     "name": "Air Quality",
     "category": "Temps",
     "description": "Mostra l'índex de qualitat de l'aire de la teva ubicació.",
-    "repo": "https://github.com/CFenner/MMM-AirQuality",
+    "repo": "https://github.com/doobmarley/MMM-AirQuality",
     "stars": 4,
     "requiresApiKey": false
   },
@@ -76,152 +22,17 @@
     "name": "Moon Phase",
     "category": "Temps",
     "description": "Mostra la fase lunar actual en temps real amb animació visual.",
-    "repo": "https://github.com/NolanKingdon/MMM-MoonPhase",
+    "repo": "https://github.com/doobmarley/MMM-MoonPhase",
     "stars": 4,
     "requiresApiKey": false
   },
-  {
-    "id": "MMM-DynamicWeather",
-    "name": "Dynamic Weather",
-    "category": "Temps",
-    "description": "Animacions dinàmiques basades en el temps actual: pluja, neu, sol...",
-    "repo": "https://github.com/scottcl88/MMM-DynamicWeather",
-    "stars": 5,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-NewsAPI",
-    "name": "News API",
-    "category": "Notícies",
-    "description": "Mostra les últimes notícies de qualsevol font mitjançant l'API de NewsAPI.",
-    "repo": "https://github.com/mumblebaj/MMM-NewsAPI",
-    "stars": 4,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-wiki",
-    "name": "Wikipedia",
-    "category": "Notícies",
-    "description": "Mostra fragments aleatoris de Wikipedia. Ideal per aprendre cada dia.",
-    "repo": "https://github.com/mihairinzis/MMM-wiki",
-    "stars": 3,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-OnThisDay",
-    "name": "On This Day",
-    "category": "Notícies",
-    "description": "Mostra esdeveniments històrics passats avui en la història.",
-    "repo": "https://github.com/nkl-kst/MMM-OnThisDay",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-SoccerLiveScore",
-    "name": "Soccer Live Score",
-    "category": "Esports",
-    "description": "Mostra els marcadors en directe de partits de futbol de les millors lligues.",
-    "repo": "https://github.com/ouyi/MMM-SoccerLiveScore",
-    "stars": 5,
-    "requiresApiKey": false
-  },
-  {
+    {
     "id": "MMM-Strava",
     "name": "Strava",
     "category": "Esports",
     "description": "Mostra les teves estadístiques d'entrenament de Strava al mirall.",
-    "repo": "https://github.com/ianperrin/MMM-Strava",
+    "repo": "https://github.com/doobmarley/MMM-Strava",
     "stars": 4,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-Jast",
-    "name": "Stock Ticker",
-    "category": "Finances",
-    "description": "Ticker d'accions i criptomonedes en temps real. No requereix clau API.",
-    "repo": "https://github.com/jalibu/MMM-Jast",
-    "stars": 5,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-CoinGecko",
-    "name": "CoinGecko Crypto",
-    "category": "Finances",
-    "description": "Mostra preus de criptomonedes amb gràfics i variacions des de CoinGecko.",
-    "repo": "https://github.com/malako/MMM-CoinGecko",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-Netatmo",
-    "name": "Netatmo",
-    "category": "Llar",
-    "description": "Mostra les dades de la teva estació meteorològica Netatmo interior/exterior.",
-    "repo": "https://github.com/CFenner/MMM-Netatmo",
-    "stars": 5,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-Remote-Control",
-    "name": "Remote Control",
-    "category": "Sistema",
-    "description": "Controla el teu MagicMirror des del mòbil: reinicia, apaga, instal·la mòduls.",
-    "repo": "https://github.com/Jopyth/MMM-Remote-Control",
-    "stars": 5,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-pages",
-    "name": "Pages",
-    "category": "Sistema",
-    "description": "Organitza els mòduls en múltiples pàgines i navega entre elles automàticament.",
-    "repo": "https://github.com/edward-shen/MMM-pages",
-    "stars": 5,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-Carousel",
-    "name": "Carousel",
-    "category": "Sistema",
-    "description": "Crea presentacions dinàmiques dels teus mòduls, rotant entre ells.",
-    "repo": "https://github.com/shbatm/MMM-Carousel",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-ModuleScheduler",
-    "name": "Module Scheduler",
-    "category": "Sistema",
-    "description": "Programa quan es mostren o s'amaguen els mòduls amb horaris configurables.",
-    "repo": "https://github.com/ianperrin/MMM-ModuleScheduler",
-    "stars": 4,
-    "requiresApiKey": false
-  },
-  {
-    "id": "MMM-GoogleMapsTraffic",
-    "name": "Google Maps Traffic",
-    "category": "Transport",
-    "description": "Mostra un mapa de Google Maps centrat en la teva ubicació amb informació de trànsit.",
-    "repo": "https://github.com/ChrisF1976/MMM-GoogleMapsTraffic",
-    "stars": 4,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-Traffic",
-    "name": "Traffic",
-    "category": "Transport",
-    "description": "Mostra el temps de desplaçament fins a una destinació tenint en compte el trànsit.",
-    "repo": "https://github.com/saml-dev/MMM-Traffic",
-    "stars": 4,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-Fuel",
-    "name": "Gas Prices",
-    "category": "Transport",
-    "description": "Mostra els preus dels combustibles a les gasolineres properes.",
-    "repo": "https://github.com/fewieden/MMM-Fuel",
-    "stars": 3,
     "requiresApiKey": true
   },
   {
@@ -229,7 +40,7 @@
     "name": "Alexa Control",
     "category": "Sistema",
     "description": "Controla el teu MagicMirror amb comandes de veu mitjançant Amazon Alexa.",
-    "repo": "https://github.com/Brigade1/MMM-AlexaControl",
+    "repo": "https://github.com/doobmarley/MMM-AlexaControl",
     "stars": 3,
     "requiresApiKey": true
   },
@@ -238,16 +49,7 @@
     "name": "Gmail Feed",
     "category": "Comunicació",
     "description": "Mostra els correus no llegits de la teva safata de Gmail al mirall.",
-    "repo": "https://github.com/tjnorwat/MMM-GmailFeed",
-    "stars": 3,
-    "requiresApiKey": true
-  },
-  {
-    "id": "MMM-OneTracker",
-    "name": "OneTracker",
-    "category": "Utilitat",
-    "description": "Seguiment de paquets i enviaments des de múltiples operadors logístics.",
-    "repo": "https://github.com/MatthiasHarzer/MMM-OneTracker",
+    "repo": "https://github.com/doobmarley/MMM-GmailFeed",
     "stars": 3,
     "requiresApiKey": true
   },
@@ -256,7 +58,7 @@
     "name": "OpenHAB Items",
     "category": "Llar",
     "description": "Integració amb OpenHAB per mostrar i controlar dispositius de la llar intel·ligent.",
-    "repo": "https://github.com/gehransaeed/MMM-OpenHAB-Items",
+    "repo": "https://github.com/doobmarley/MMM-OpenHAB-Items",
     "stars": 3,
     "requiresApiKey": false
   },
@@ -265,7 +67,7 @@
     "name": "WiFi Password",
     "category": "Utilitat",
     "description": "Mostra el nom i la contrasenya del WiFi amb un codi QR per connectar-se fàcilment.",
-    "repo": "https://github.com/TeraTech/MMM-WiFiPassword",
+    "repo": "https://github.com/doobmarley/MMM-WiFiPassword",
     "stars": 4,
     "requiresApiKey": false
   },
@@ -274,7 +76,7 @@
     "name": "Soccer",
     "category": "Esports",
     "description": "Mostra classificacions i resultats de lligues de futbol.",
-    "repo": "https://github.com/fewieden/MMM-soccer",
+    "repo": "https://github.com/doobmarley/MMM-soccer",
     "stars": 4,
     "requiresApiKey": true
   }
