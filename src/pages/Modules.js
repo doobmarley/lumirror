@@ -18,7 +18,7 @@ function Modules({ activeModules, onRefresh }) {
   const [working, setWorking] = useState(null);
   const [selectedPositions, setSelectedPositions] = useState({});
   const [restarting, setRestarting] = useState(false);
-  const [configuringModule, setConfiguringModule] = useState(null);
+  const [modalState, setModalState] = useState(null);
 
   useEffect(() => {
     fetch(`${AGENT_URL}/modules`)
@@ -31,24 +31,33 @@ function Modules({ activeModules, onRefresh }) {
   const isActive = (mod) => activeModules.includes(mod);
 
   const handleActivateClick = (mod) => {
-    setConfiguringModule(mod);
+    setModalState({ moduleName: mod, mode: 'activate' });
   };
 
-  const handleActivateConfirm = (mod, configValues) => {
-    setConfiguringModule(null);
-    setWorking(mod);
-    setMessage(null);
-    const position = selectedPositions[mod] || 'bottom_bar';
+  const handleEditClick = (mod) => {
+    setModalState({ moduleName: mod, mode: 'edit' });
+  };
 
-    fetch(`${AGENT_URL}/config/modules/add`, {
+  const handleModalConfirm = (values, position) => {
+    const { moduleName, mode } = modalState;
+    setModalState(null);
+    setWorking(moduleName);
+    setMessage(null);
+
+    const endpoint = mode === 'edit' ? '/config/modules/update' : '/config/modules/add';
+
+    fetch(`${AGENT_URL}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ moduleName: mod, position, config: configValues })
+      body: JSON.stringify({ moduleName, position, config: values })
     })
       .then(res => res.json())
       .then(data => {
         if (data.ok) {
-          setMessage({ type: 'success', text: `✅ ${mod} activat! Reinicia el mirall per veure els canvis.` });
+          const text = mode === 'edit'
+            ? `✅ ${moduleName} actualitzat! Reinicia el mirall per veure els canvis.`
+            : `✅ ${moduleName} activat! Reinicia el mirall per veure els canvis.`;
+          setMessage({ type: 'success', text });
           if (onRefresh) onRefresh();
         } else {
           setMessage({ type: 'error', text: `❌ ${data.error}` });
@@ -128,11 +137,12 @@ function Modules({ activeModules, onRefresh }) {
 
   return (
     <div className="modules">
-      {configuringModule && (
+      {modalState && (
         <ModuleConfigModal
-          moduleName={configuringModule}
-          onConfirm={(values) => handleActivateConfirm(configuringModule, values)}
-          onCancel={() => setConfiguringModule(null)}
+          moduleName={modalState.moduleName}
+          mode={modalState.mode}
+          onConfirm={handleModalConfirm}
+          onCancel={() => setModalState(null)}
         />
       )}
 
@@ -176,6 +186,16 @@ function Modules({ activeModules, onRefresh }) {
                   <option key={pos} value={pos}>{pos}</option>
                 ))}
               </select>
+            )}
+
+            {isActive(mod) && (
+              <button
+                className="module-btn edit"
+                onClick={() => handleEditClick(mod)}
+                disabled={working === mod}
+              >
+                ✏️ Editar
+              </button>
             )}
 
             <button
