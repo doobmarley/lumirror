@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <span className="brand-icon">🪞</span>
+        <img src="/logo.png" alt="Lumirror" className="brand-logo" />
         <span className="brand-name">Lumirror</span>
       </div>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
