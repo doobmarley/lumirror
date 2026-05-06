@@ -294,4 +294,190 @@
       }
     ]
   }
+,
+  "clock": {
+    "fields": [
+      {
+        "key": "timeFormat",
+        "label": "Format de l'hora",
+        "type": "select",
+        "required": false,
+        "default": 24,
+        "options": [12, 24]
+      },
+      {
+        "key": "showPeriod",
+        "label": "Mostrar AM/PM",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      {
+        "key": "showDate",
+        "label": "Mostrar data",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      },
+      {
+        "key": "showWeek",
+        "label": "Mostrar número de setmana",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      {
+        "key": "showSunTimes",
+        "label": "Mostrar hora de sortida/posta de sol",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      {
+        "key": "lat",
+        "label": "Latitud (per hora solar)",
+        "type": "number",
+        "required": false,
+        "placeholder": "41.3851"
+      },
+      {
+        "key": "lon",
+        "label": "Longitud (per hora solar)",
+        "type": "number",
+        "required": false,
+        "placeholder": "2.1734"
+      }
+    ]
+  },
+  "weather": {
+    "fields": [
+      {
+        "key": "weatherProvider",
+        "label": "Proveïdor del temps",
+        "type": "select",
+        "required": false,
+        "default": "openmeteo",
+        "options": ["openmeteo", "openweathermap", "weathergov"]
+      },
+      {
+        "key": "type",
+        "label": "Tipus de previsió",
+        "type": "select",
+        "required": false,
+        "default": "current",
+        "options": ["current", "forecast"]
+      },
+      {
+        "key": "lat",
+        "label": "Latitud",
+        "type": "number",
+        "required": true,
+        "placeholder": "41.3851"
+      },
+      {
+        "key": "lon",
+        "label": "Longitud",
+        "type": "number",
+        "required": true,
+        "placeholder": "2.1734"
+      },
+      {
+        "key": "units",
+        "label": "Unitats",
+        "type": "select",
+        "required": false,
+        "default": "metric",
+        "options": ["metric", "imperial"]
+      },
+      {
+        "key": "apiKey",
+        "label": "API Key (només OpenWeatherMap)",
+        "type": "password",
+        "required": false,
+        "placeholder": "La teva API Key"
+      }
+    ]
+  },
+  "calendar": {
+    "fields": [
+      {
+        "key": "maximumEntries",
+        "label": "Màxim d'esdeveniments a mostrar",
+        "type": "number",
+        "required": false,
+        "default": 10
+      },
+      {
+        "key": "maximumNumberOfDays",
+        "label": "Màxim de dies a mostrar",
+        "type": "number",
+        "required": false,
+        "default": 365
+      },
+      {
+        "key": "showLocation",
+        "label": "Mostrar ubicació",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      {
+        "key": "displayRepeatingCountTitle",
+        "label": "Mostrar comptador d'esdeveniments repetits",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      }
+    ]
+  },
+  "newsfeed": {
+    "fields": [
+      {
+        "key": "showSourceTitle",
+        "label": "Mostrar títol de la font",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      },
+      {
+        "key": "showPublishDate",
+        "label": "Mostrar data de publicació",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      },
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 300000
+      },
+      {
+        "key": "reloadInterval",
+        "label": "Interval de recàrrega (ms)",
+        "type": "number",
+        "required": false,
+        "default": 900000
+      }
+    ]
+  },
+  "compliments": {
+    "fields": [
+      {
+        "key": "updateInterval",
+        "label": "Interval d'actualització (ms)",
+        "type": "number",
+        "required": false,
+        "default": 30000
+      },
+      {
+        "key": "fadeSpeed",
+        "label": "Velocitat de transició (ms)",
+        "type": "number",
+        "required": false,
+        "default": 4000
+      }
+    ]
+  }
 }
