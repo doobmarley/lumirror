@@ -77,20 +77,19 @@
   }
 
   .brand-logo-wrapper {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 6px;
-  flex-shrink: 0;
-}
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
 
-.brand-logo {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  filter: invert(1);
-}
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
 }
