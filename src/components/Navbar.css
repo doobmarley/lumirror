@@ -75,4 +75,11 @@
   .navbar-links.open {
     display: flex;
   }
+
+  .brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: invert(1);
+}
 }
