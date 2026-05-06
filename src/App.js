@@ -11,12 +11,16 @@ const AGENT_URL = 'http://192.168.1.97:8585';
 
 function App() {
   const [installedModules, setInstalledModules] = useState([]);
+  const [defaultModules, setDefaultModules] = useState([]);
   const [activeModules, setActiveModules] = useState([]);
 
   const refreshModules = useCallback(() => {
     fetch(`${AGENT_URL}/modules`)
       .then(res => res.json())
-      .then(data => setInstalledModules(data.modules || []));
+      .then(data => {
+        setInstalledModules(data.modules || []);
+        setDefaultModules((data.defaultModules || []).filter(m => !m.endsWith('.js')));
+      });
   }, []);
 
   const refreshActive = useCallback(() => {
@@ -43,6 +47,7 @@ function App() {
             <Route path="/modules" element={
               <Modules
                 activeModules={activeModules}
+                defaultModules={defaultModules}
                 onRefresh={refreshActive}
               />}
             />
