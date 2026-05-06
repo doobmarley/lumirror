@@ -163,3 +163,14 @@
   background-color: #888;
   color: #0f0f0f;
 }
+
+.module-btn.edit {
+  border: 1px solid #f0a500;
+  background-color: transparent;
+  color: #f0a500;
+}
+
+.module-btn.edit:hover {
+  background-color: #f0a500;
+  color: #0f0f0f;
+}
