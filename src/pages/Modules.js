@@ -11,7 +11,7 @@ const POSITIONS = [
   'fullscreen_above', 'fullscreen_below'
 ];
 
-function Modules({ activeModules, onRefresh }) {
+function Modules({ activeModules, defaultModules, onRefresh }) {
   const [modules, setModules] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
@@ -23,12 +23,17 @@ function Modules({ activeModules, onRefresh }) {
   useEffect(() => {
     fetch(`${AGENT_URL}/modules`)
       .then(res => res.json())
-      .then(data => setModules(data.modules || []))
+      .then(data => {
+        const installed = data.modules || [];
+        const defaults = (data.defaultModules || []).filter(m => !m.endsWith('.js'));
+        setModules([...defaults, ...installed]);
+      })
       .catch(() => setMessage({ type: 'error', text: '❌ No s\'ha pogut connectar amb el mirall' }))
       .finally(() => setLoading(false));
   }, []);
 
   const isActive = (mod) => activeModules.includes(mod);
+  const isDefault = (mod) => defaultModules.includes(mod);
 
   const handleActivateClick = (mod) => {
     setModalState({ moduleName: mod, mode: 'activate' });
@@ -135,6 +140,9 @@ function Modules({ activeModules, onRefresh }) {
       .finally(() => setRestarting(false));
   };
 
+  const defaultList = modules.filter(m => defaultModules.includes(m));
+  const installedList = modules.filter(m => !defaultModules.includes(m));
+
   return (
     <div className="modules">
       {modalState && (
@@ -147,7 +155,7 @@ function Modules({ activeModules, onRefresh }) {
       )}
 
       <div className="modules-header">
-        <h2>Mòduls instal·lats</h2>
+        <h2>Mòduls</h2>
         <button
           className="restart-btn"
           onClick={handleRestart}
@@ -165,60 +173,115 @@ function Modules({ activeModules, onRefresh }) {
 
       {loading && <p className="info">Carregant mòduls...</p>}
 
-      <div className="modules-grid">
-        {modules.filter(m => m !== 'default').map(mod => (
-          <div key={mod} className={`module-card ${isActive(mod) ? 'active' : ''}`}>
-            <div className="module-card-header">
-              <span className="module-icon">📦</span>
-              <span className={`module-status ${isActive(mod) ? 'on' : 'off'}`}>
-                {isActive(mod) ? '● Actiu' : '○ Inactiu'}
-              </span>
-            </div>
-            <span className="module-name">{mod}</span>
+      {defaultList.length > 0 && (
+        <>
+          <h3 className="modules-section-title">📦 Mòduls per defecte</h3>
+          <div className="modules-grid">
+            {defaultList.map(mod => (
+              <div key={mod} className={`module-card ${isActive(mod) ? 'active' : ''}`}>
+                <div className="module-card-header">
+                  <span className="module-icon">⚙️</span>
+                  <span className={`module-status ${isActive(mod) ? 'on' : 'off'}`}>
+                    {isActive(mod) ? '● Actiu' : '○ Inactiu'}
+                  </span>
+                </div>
+                <span className="module-name">{mod}</span>
 
-            {!isActive(mod) && (
-              <select
-                className="position-select"
-                value={selectedPositions[mod] || 'bottom_bar'}
-                onChange={e => setSelectedPositions({ ...selectedPositions, [mod]: e.target.value })}
-              >
-                {POSITIONS.map(pos => (
-                  <option key={pos} value={pos}>{pos}</option>
-                ))}
-              </select>
-            )}
+                {!isActive(mod) && (
+                  <select
+                    className="position-select"
+                    value={selectedPositions[mod] || 'bottom_bar'}
+                    onChange={e => setSelectedPositions({ ...selectedPositions, [mod]: e.target.value })}
+                  >
+                    {POSITIONS.map(pos => (
+                      <option key={pos} value={pos}>{pos}</option>
+                    ))}
+                  </select>
+                )}
 
-            {isActive(mod) && (
-              <button
-                className="module-btn edit"
-                onClick={() => handleEditClick(mod)}
-                disabled={working === mod}
-              >
-                ✏️ Editar
-              </button>
-            )}
+                {isActive(mod) && (
+                  <button
+                    className="module-btn edit"
+                    onClick={() => handleEditClick(mod)}
+                    disabled={working === mod}
+                  >
+                    ✏️ Editar
+                  </button>
+                )}
 
-            <button
-              className={`module-btn ${isActive(mod) ? 'deactivate' : 'activate'}`}
-              onClick={() => isActive(mod) ? handleDeactivate(mod) : handleActivateClick(mod)}
-              disabled={working === mod}
-            >
-              {working === mod ? '⏳ Treballant...' :
-                isActive(mod) ? '⏹ Desactivar' : '▶ Activar'}
-            </button>
-
-            {!isActive(mod) && (
-              <button
-                className="module-btn uninstall"
-                onClick={() => handleUninstall(mod)}
-                disabled={working === mod}
-              >
-                {working === mod ? '⏳ Treballant...' : '🗑 Desinstal·lar'}
-              </button>
-            )}
+                <button
+                  className={`module-btn ${isActive(mod) ? 'deactivate' : 'activate'}`}
+                  onClick={() => isActive(mod) ? handleDeactivate(mod) : handleActivateClick(mod)}
+                  disabled={working === mod}
+                >
+                  {working === mod ? '⏳ Treballant...' :
+                    isActive(mod) ? '⏹ Desactivar' : '▶ Activar'}
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
+
+      {installedList.length > 0 && (
+        <>
+          <h3 className="modules-section-title">🔌 Mòduls instal·lats</h3>
+          <div className="modules-grid">
+            {installedList.map(mod => (
+              <div key={mod} className={`module-card ${isActive(mod) ? 'active' : ''}`}>
+                <div className="module-card-header">
+                  <span className="module-icon">📦</span>
+                  <span className={`module-status ${isActive(mod) ? 'on' : 'off'}`}>
+                    {isActive(mod) ? '● Actiu' : '○ Inactiu'}
+                  </span>
+                </div>
+                <span className="module-name">{mod}</span>
+
+                {!isActive(mod) && (
+                  <select
+                    className="position-select"
+                    value={selectedPositions[mod] || 'bottom_bar'}
+                    onChange={e => setSelectedPositions({ ...selectedPositions, [mod]: e.target.value })}
+                  >
+                    {POSITIONS.map(pos => (
+                      <option key={pos} value={pos}>{pos}</option>
+                    ))}
+                  </select>
+                )}
+
+                {isActive(mod) && (
+                  <button
+                    className="module-btn edit"
+                    onClick={() => handleEditClick(mod)}
+                    disabled={working === mod}
+                  >
+                    ✏️ Editar
+                  </button>
+                )}
+
+                <button
+                  className={`module-btn ${isActive(mod) ? 'deactivate' : 'activate'}`}
+                  onClick={() => isActive(mod) ? handleDeactivate(mod) : handleActivateClick(mod)}
+                  disabled={working === mod}
+                >
+                  {working === mod ? '⏳ Treballant...' :
+                    isActive(mod) ? '⏹ Desactivar' : '▶ Activar'}
+                </button>
+
+                {!isActive(mod) && (
+                  <button
+                    className="module-btn uninstall"
+                    onClick={() => handleUninstall(mod)}
+                    disabled={working === mod}
+                  >
+                    {working === mod ? '⏳ Treballant...' : '🗑 Desinstal·lar'}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
