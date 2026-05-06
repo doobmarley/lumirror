@@ -77,10 +77,20 @@
   }
 
   .brand-logo {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  filter: invert(1) brightness(2);
-  mix-blend-mode: screen;
-}
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: invert(1) brightness(2);
+    mix-blend-mode: screen;
+  }
+  .brand-logo-wrapper {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: transparent;
+  }
 }
